@@ -1,0 +1,103 @@
+A convolution neural network is a class of deep feed-forward artificial NN (has 2 or more hidden layers) that has successfully been applied to analyzing visual imagery.
+
+What makes images different and why do we need CNNs to process them?
+
+Fully connected neurons lead to Curse of Dimensionality
+
+More Connections -> More Weights to Train -> More time to learn.
+
+Flipping, cropping, squeezing down images, different images of the same object shouldn't change what the model predicts in the image.
+
+This is called Translational Invariance.
+
+Convolution Neural Network
+--------------------------
+    - Reduce weights to train
+    - General object identification to have Translational Invariance
+
+Image Data ->
+Conv + non-linear Relu activation ->
+Pool ->
+Conv + non-linear Relu activation ->
+Pool ->
+Dense ->
+Dense
+
+CNN Components
+--------------
+Convolution
+Non-linearity (ReLU)
+Pooling
+Classification
+
+Convolution
+-----------
+Extracts features from image
+Preserves feature spatial relationships
+    - Edges
+    - Composite elements (nose, eye)
+Reduced computation
+
+6x6x3 images
+
+Kernel filters - May look for ears, nose, eyes, etc.
+3x3x5 filters
+
+Feature Maps (convolved image)
+4x4x5
+
+Filters
+-------
+Filter values are not fixed
+Values are what we train
+Improved through training
+Trained on labeled images
+Detect unique features that determine objects
+CNN training faster since only filter weights trained
+Weights shared across image
+
+Key Convolution Hyperparameters
+-------------------------------
+Kernel Size - Sets width and height of each filter.  How many pixels at a distance to each other affect the content of the image? If Large, pixels near eye can be affected by nose.  Small values work better. 3, 5, 7. Smaller kernel size = larger feature map
+Number of Filters - Features detected.  Higher filters are better 16, 32, 64, 96
+Stride - Distance to move filter.  Larger values faster.  Decrease size of feature map, reduces information passed to next layer.  1 is common value.
+Padding - Feature maps is smaller than input.  May not be desirable.  We need to preserve the dimension size.  Notice edges aren't used as much.
+ 0 padding -> edge of 0's are added to image. -> Feature map will now be same size of original image. ****padding=same****
+
+Non-Linear Activation Function
+------------------------------
+Lets NN handle non-linear changes in data
+Added in two ways
+    - As a layer after convolution layer
+    - As parameter to convolution layer
+    - ReLU most common
+        - Simple to implement y = max(0, x)
+        if ( x < 0) return 0 else return x
+    - Prevents vanishing gradient (prevents them from dropping to 0)
+
+Pooling Layer
+-------------
+- Reduces size of data
+    - Reduces number of weights that need to be trained and controls overfitting
+Creates a more generalized version of the image to implement the translational invariance we want
+MaxPooling is most common.
+
+Take filter (2x2) -> (take largest value in the mask) Stride is usually set to same size of pooling.
+2x2, 2 Stride
+
+F = height or width of Pool
+S = Stride
+W_out = ((Win - F)/S)+1
+H_out = ((Hin - F)/S)+1
+Depth_in = D_out
+
+We have accomplished dimensional reduction.
+
+Same shape (topography). will change a cats ear from > to 7 to generalize.
+
+
+First Conv _ Relu _ Pool might identify, lines, arcs and other primitive structures,
+second may find eye, nose, mouth, etc.
+Dense then puts them together to get a completed face and classify who it is.
+
+Early layers (all conv+pool) do feature detection then Dense layers do the Classification.

@@ -1,0 +1,27 @@
+# Callbacks
+Collect information on training
+Remotely monitor training
+Tune parameters while training
+create checkpoints
+Terminate training early
+API for user-defined callbacks
+
+# Saving and restoring
+.save(filepath) - saves model to HDF5 file
+.load_model(filepath) - loads model from HDF5 file
+
+.model_to_json, .model_to_yaml - saves only model layer structural architecture without weights to json or yaml string.
+.model_from_json, .model_from_yaml - restores only model layer structural architecture from json or yaml string.
+
+# Should be the same architecture
+# Might use these to save training weights and try something different and load the old weights if the new ones aren't great.
+.save_weights(filepath) - saves only the model weights to HDF5 file
+.load_weights(filepath) - loads only the model weights from HDF5 file
+
+
+# Sequential Model
+Input -> Layer -> Layer -> Layer -> Layer -> Layer -> Layer -> Layer -> Output
+
+# Functional API
+Layers are defined separate from model and the connections between them are user defined.
+These arrangements can be functional units of layers.

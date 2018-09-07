@@ -1,0 +1,9 @@
+Rules of Thumb for Starting Number of Hidden Layers
+
+Jeff Heaton - http://www.heatonresearch.com/2017/06/01/hidden-layers.html
+
+>= size of input layer AND <= size of output layer
+(2/3 * size of input layer) + size of output layer
+< 2 * size of input layer
+
+4 neurons for our circle example

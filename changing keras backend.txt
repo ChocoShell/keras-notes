@@ -1,0 +1,10 @@
+c:\users\<username>\.keras\keras.json
+/Users/jonathan.reyes/.keras/keras.json
+
+tensorflow, theano, cntk
+
+set KERAS_BACKEND=theano
+# backend now theano
+
+set KERAS_BACKEND=
+# clears out the backend back to the one in json

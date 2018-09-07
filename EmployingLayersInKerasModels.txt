@@ -1,0 +1,148 @@
+Common Methods
+--------------
+Layers are built on a common layer object and share some common methods.
+
+get_weights() - get weights of layer
+set_weights(weights) - sets weights of layer from a list of numpy arrays
+
+get_config() - returns dict with configuration of layer
+set_config() - sets dict with configuration of layer
+
+input - input tensor
+output - output tensor
+input_shape - input_shape of tensor
+output_shape - output_shape of tensor
+
+get_input_at(node_idx)
+get_output_at(node_idx)
+get_input_shape_at(node_idx)
+get_output_shape_at(node_idx)
+
+There are over 70 keras layers and you can build your own custom layers.
+
+Keras Layer Groups
+------------------
+Common - Common to most neural networks
+Shaping - Layers that shape data passed through the network
+Merging - Combine the output of layers.
+Extension - Let us add our own layer
+Convolution - Support specific types of networks
+Recurrent - Support specific types of networks
+
+Common Layers
+-------------
+Dense - Takes all inputs  and feeds it into each of the neurons in X and outputs Dense(X) X outputs.
+Dropout - Randomly sets the inputs it receives to 0.  Generalizes model. Reduces overfitting.
+
+
+Dense(4)
+Dense(4)
+Dropout(0.5) Probability to drop data.
+Dense(1)
+
+Shaping Layers
+--------------
+Reshape(target_shape)
+ - reshape((2,3), inputs_shape=(6,))
+ - input: (None, 6) -> (None, 2, 3)
+
+Flatten()
+ - Flatten()
+ - input: (None, 64, 32, 32) -> (None, 65536)
+
+Permute(dims) - Sometimes we need to switch the order of the dimensions in the tensor
+    - Permute((2,1), input_shape(20, 40))
+    - output -> (None, 40, 20)
+
+RepeatVector(n)
+    - RepeatVector(3)
+    - input (None, 32) -> (None, 3, 32)
+
+Merging Layers
+--------------
+Takes two layers and merges their outputs.
+Different type of merges
+Take tensors as inputs
+result is merged tensor
+Add, Subtract, Multiply - All must be same shape
+Average, Maximum - Same shape as input
+Concatenate - Concats tensors, all input tensors must be same.
+Dot - Computes dot product on specified axis
+
+There are two types, uppercase and lowercase
+
+Subtract()[x1, x2]
+subtract(x1, x2)
+
+input1 = keras.layers.Input(shape=(16,), name="input_1")
+x1 = keras.layers.Dense(8, activation='relu', name="dense_1")(input1)
+
+input2 = keras.layers.Input(shape=(16,), name="input_2")
+x2 = keras.layers.Dense(8, activation='relu', name="dense_2")(input2)
+
+added = keras.layers.Add()[x1,x2]
+# added = keras.layers.add(x1,x2)
+
+out = keras.layers.Dense(4, name='dense_3')(added)
+
+model = keras.models.Model(inputs=[input1, input2], outputs=out)
+
+Extension Layers
+----------------
+Extend Functionality by allowing us to perform custom tasks that we define.  They encapsulate our logic
+
+Two ways of doing this.
+ - Lambda Layer that we define
+ - Custom Layer
+
+ Lambda layer - Simple tasks like math operation or call a function
+ They cannot contain trainable weights
+ They can be called inline or by calling a function
+
+ Example:
+ # inline lambda
+ model.add(Lambda(lambda x: x ** 2))
+
+ # function lambda
+ def sqr(x):
+    return x ** 2
+
+# Theano only
+def sqr_shape(input_shape):
+    return input_shape
+
+model.add(Lambda(sqr, output_shape=sqr_shape))
+
+Custom Layer
+------------
+Will let us handle complex tasks.  Anything Keras Layers can handle, these layers can handle
+These have trainable weights and are reusable.  There are some Must Implement methods.
+
+Class MyLayer(Layer):
+    def __init__(self, output_dim, **kwargs):
+        self.output_dim = output_dim
+        super(MyLayer, self).__init__(**kwargs)
+
+    def build(self, input_shape):
+        self.kernel = self.add_weight(
+            name="kernel", shape=
+            (
+                input_shape[1], self.output_dim
+            ),
+            initializer="uniform",
+            trainable=True
+        )
+        super(MyLayer, self).build(input_shape)
+
+    def call(self, x):
+        return K.dot(x, self_kernel)
+
+    def compute_output_shape(self, input_shape):
+        return (input_shape[0], self.output_dim)
+
+Usage
+-----
+Model.add(MyLayer)
+
+x1 = Dense(...)(in)
+MyLayer(...)(x1)
