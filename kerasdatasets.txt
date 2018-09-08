@@ -1,0 +1,15 @@
+Image datasets
+--------------
+MNIST
+Fashion MNIST
+CIFAR 10  - 10 classes airplanes, dogs, trucks, cars in color 
+CIFAR 100 - 100 classes people, boy, girl, man, baby in color
+
+Text
+----
+IMDB - Sentiment Analysis
+Reuters - Topic Classification
+
+Regression
+----------
+Boston Housing Price

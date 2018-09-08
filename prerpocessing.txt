@@ -1,0 +1,10 @@
+pad_sequence() in RNN to make sure word sequences are all the same size by truncating or padding the sequence.
+skipgrams() - and make sample table are used in word prediction to predict what the next word will be.  Skipgrams process word seqences and generates word couples and checks if the word couples appears in the training params.
+make_sampling_table() - creates sample table used in skipgrams() it contains the probability of the sample words, it is used by skipgrams() to ensure it equally samples words and does not sample the highest occuring words
+
+Some issues with NNs can happen when activation values grow out of control.  To handle this, keras gives us a batchNormalization layer, it normalizes the previous layer so they have a mean near zero and an std of 1.
+Dropout - Randomly drops inputs by setting them to 0.
+
+We can use Noise layer instead of dropout, we can use gaussian noise layer to add gaussian distributed noise, this forces the training processing to figure out other ways to reduce loss.
+We can use Gaussian Dropout (multiplying it by a gaussian noise centered at 1)
+We can also use Alpha Dropout - to retain the mean invariants of the previous layer and reduce the output from some of the units.

@@ -1,0 +1,9 @@
+Keras - https://keras.io, https://blog.keras.io
+
+Deep Learning Book - http://deeplearningbook.org
+
+Stanford CS231 - http://cs231n.github.io/convolutional-networks/
+
+RNN/LSTM - http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+RNN Applications - http://karpathy.github.io/2015/05/21/rnn-effectiveness/

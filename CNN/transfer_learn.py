@@ -6,6 +6,8 @@ to a dataset we are interested in. In this example, we will use the Inception-V3
 model.
 This code was inspired by the post
 https://blog.keras.io/building-powerful-image-classification-models-using-very-little-
+
+https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/train.zip
 """
 import glob
 import matplotlib.pyplot as plt

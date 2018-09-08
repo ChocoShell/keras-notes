@@ -1,0 +1,10 @@
+Xception
+VGG16 - 500MB
+VGG19 - 500MB
+ResNet50
+InceptionV3
+InceptionResNetV2 - 572 Depth
+MobileNet
+DenseNet121
+DenseNet169
+DenseNet201
