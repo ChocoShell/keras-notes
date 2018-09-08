@@ -101,3 +101,21 @@ second may find eye, nose, mouth, etc.
 Dense then puts them together to get a completed face and classify who it is.
 
 Early layers (all conv+pool) do feature detection then Dense layers do the Classification.
+
+CNN uses
+--------
+Keras has layers for Video
+Signal Processing
+NLP
+Combine with RNN
+
+Summary
+-------
+Lots of pixels mean fully connected layers are too slow and impractical.
+Even if we could, we still have issues with Translational Invariance (image shifting, cropping, etc)
+CNN reduces the number of weights by creating Feature Maps.
+Feature Maps give us arcs, triangle, edges etc.
+These feature maps can then be used to fine more complex images, eyes, mouths, etc
+We Built a FashionMNIST model from scratch
+We used transfer learning - using the inception model, we were able to get great accuracy on our data for dogs and cats.
+CNNs are easy with Keras.

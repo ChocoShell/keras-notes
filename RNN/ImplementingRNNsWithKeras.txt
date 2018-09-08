@@ -1,0 +1,48 @@
+Traditional NN Issues
+---------------------
+No tracking of data sequences
+Does not remember previous values
+RNNs address these issues.
+
+
+Sequential Information
+They do this by performing the same series of computations for each data item in a sequence and base the output on not only the info from the current item but also from the data and computations of items in previous points in the series.
+
+
+input(input matrix U) -> model(now has hidden state h, W (transition matrix) conditions how the hidden state is passed from one state to the next.) -> output (output matrix V)
+
+Simple RNN is hard to train.
+For backprop we need to train U V and W.
+
+If the values move away from one:
+    1 < They start growing and growing. Exploding gradient
+    1 > They start shrinking. Vanishing Gradient -> Usually costs the biggest issue.
+
+2 New Common RNN
+    - LSTM
+    - GRU
+
+LSTM and GRU
+------------
+    - LSTM: Explicit memory structure called a cell state that store information.  Info can be added or removed using gates.
+
+f(X_t, h_t-1) -> ht
+
+Forget gate to remove items from cell state. Uses H_t-1 and x_t to figure out what to forget.
+
+Input gate -> h_t-1 and x_t to see what to add.
+
+output gate -> h_t-1  and the cell state at this time to update the hidden state
+
+http://colah.github.io/posts/2015-08-Understanding-LSTMs
+
+GRU is a variant of LSTM
+
+Gated Recurrent Unit
+Simplifies LSTM
+Forget + INput -> update
+Merges cell and hidden state
+
+ConvLSTM2D -> Uses video data and convolution is applied frame by frame
+
+CuDNNGRU, CUDNNLSTM -> Cuda specific ones.
