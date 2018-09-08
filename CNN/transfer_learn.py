@@ -9,8 +9,8 @@ https://blog.keras.io/building-powerful-image-classification-models-using-very-l
 
 https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/download/train.zip
 
-Need data -> train -> cats, dogs folders 1000 images each
-          -> validate -> cats, dogs folders 400 images each
+Need data -> train -> cat, dog folders 1000 images each
+          -> validate -> cat, dog folders 400 images each
 """
 import glob
 import matplotlib.pyplot as plt
