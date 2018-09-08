@@ -134,7 +134,7 @@ history_transfer_learning = model.fit_generator(
 )
 
 # Save Transfer Learning Model
-model.save('inceptionv3-transfer-learning-model')
+model.save('inceptionv3-transfer-learning.model')
 
 # Option 2: Transfer Learning with Fine-tuning - retrain the end few layers (called the top layers) of the inception model
 print("\nFine tuning existing model")
